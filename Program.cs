@@ -15,6 +15,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https:/
 builder.Services.AddSingleton<documentFolder>();
 builder.Services.AddScoped<AddDocument>();
 builder.Services.AddScoped<ViewFile>();
+builder.Services.AddHostedService<CleanupService>();
 
 //Builds the app
 var app = builder.Build();
@@ -80,37 +81,5 @@ app.MapDelete("/api/documents/{id}", (int id) =>
     folder.Documents.Remove(document);
     return Results.Ok("Document deleted successfully.");
 });
-
-// Ensures the examples files are preserved when the website stops 
-void CleanUp()
-{
-    var folder = "MockFiles";
-
-    // The preserved files hashset allows fast list checks  
-    var preservedFiles = new HashSet<string>
-    {
-        "Example(1).txt",
-        "Example(2).txt",
-        "Example(3).txt"
-    };
-
-    if (Directory.Exists(folder))
-    {
-        var allFiles = Directory.GetFiles(folder);
-        foreach (var filePath in allFiles)
-        {
-            var fileName = Path.GetFileName(filePath);
-            if (!preservedFiles.Contains(fileName))
-            {
-                File.Delete(filePath);
-                Console.WriteLine($"Removing:{fileName}");
-            }
-        }
-    }
-
-}
-
-// Uses the Clean up function from above to ensure the examples within mock files are preserved
-app.Lifetime.ApplicationStopping.Register(CleanUp);
 
 app.Run();

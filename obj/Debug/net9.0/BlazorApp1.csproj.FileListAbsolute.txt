@@ -83,3 +83,4 @@ C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\obj\Debug\net9.0\compressed\ysu4imba
 C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\bin\Debug\net9.0\MockFiles\Example(1).txt
 C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\bin\Debug\net9.0\MockFiles\Example(2).txt
 C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\bin\Debug\net9.0\MockFiles\Example(3).txt
+C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\obj\Debug\net9.0\BlazorApp1.sourcelink.json
