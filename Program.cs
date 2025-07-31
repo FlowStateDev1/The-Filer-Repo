@@ -29,9 +29,12 @@ if (!app.Environment.IsDevelopment())
 
 // Ensures all http requests are secure (http --> https)
 app.UseHttpsRedirection();
+app.UseRouting();
 app.UseAntiforgery();
 
 // Serves static files from wwwroot
+app.UseStaticFiles();
+
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
