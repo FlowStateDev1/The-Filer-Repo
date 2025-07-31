@@ -1,0 +1,67 @@
+@page "/List"
+@attribute [StreamRendering]
+@using TheFiler.BlazorApp1.Data;
+@using TheFiler.BlazorApp1.Services;
+@using System.Net.Http.Json;
+@inject HttpClient Http;
+
+<PageTitle>List</PageTitle>
+
+<h1>List of current file(s)</h1>
+<br />
+@if (documents == null)
+{
+    <p><em>Error: No documents were loaded correctly.</em></p>
+}
+else if (documents.Count == 0)
+{
+    <p>No files found.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>File Type</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var doc in documents)
+            {
+                <tr>
+                    <td><i class="bi bi-file-earmark-text"></i></td>
+                    <td>@doc.Name</td> 
+                    <td>
+                        <a href= "/documents/view/@doc.Id" class="btn btn-primary">View</a>
+                    </td> 
+                </tr>
+            }    
+        </tbody>
+    </table> 
+}   
+
+@code {
+    private List<Document>? documents;
+
+    // Function to load files from the API
+    private async Task LoadFiles()
+    {
+        documents = await Http.GetFromJsonAsync<List<Document>>("https://localhost:7070/api/documents") ?? new List<Document>();
+    }  
+
+    // Attempts to load the folder contents when the page is initialized || Catches any exceptions and displays an error message
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await LoadFiles();
+        }
+
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading files: {ex.Message}");
+        }
+    }
+}

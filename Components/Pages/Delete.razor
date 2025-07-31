@@ -1,0 +1,84 @@
+@page "/Delete"
+@attribute [StreamRendering]
+@using TheFiler.BlazorApp1.Data;
+@using TheFiler.BlazorApp1.Services;
+@using System.Net.Http.Json;
+
+@inject HttpClient Http;
+
+<PageTitle>Delete</PageTitle>
+
+<h1>Select file(s) to delete</h1>
+<br />
+@if (documents == null)
+{
+    <p><em>Error: No documents were loaded correctly.</em></p>
+}
+else if (documents.Count == 0)
+{
+    <p>No files to be deleted.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>File Type</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var doc in documents)
+            {
+                <tr>
+                    <td><i class="bi bi-file-earmark-text"></i></td>
+                    <td>@doc.Name</td> 
+                    <td>
+                        <button class="btn btn-danger rounded" @onclick="() => DeleteDocument(doc.Id)">Delete</button>
+                    </td> 
+                </tr>
+            }
+        </tbody>
+    </table> 
+}  
+
+@code {
+    private List<Document>? documents;
+
+    // Function to load files from the API
+    private async Task LoadFiles()
+    {
+        documents = await Http.GetFromJsonAsync<List<Document>>("https://localhost:7070/api/documents") ?? new List<Document>();
+    }    
+
+    // A private method that takes a doc's id and removes it from the in-site folder
+    private async Task DeleteDocument(int id)
+    {
+        var response = await Http.DeleteAsync($"https://localhost:7070/api/documents/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            await LoadFiles();
+        }
+        else
+        {
+            var error = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Failed to delete: {error}");
+        }
+    }
+
+    // Page's file loader w/ error catching
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await LoadFiles();
+        }
+
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading files: {ex.Message}");
+        }
+    }
+}
+

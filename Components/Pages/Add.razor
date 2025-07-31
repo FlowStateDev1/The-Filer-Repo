@@ -1,0 +1,69 @@
+@page "/add"
+@attribute [StreamRendering]
+@using TheFiler.BlazorApp1.Data;
+@using TheFiler.BlazorApp1.Services;
+@using Microsoft.AspNetCore.Components.Web
+
+@using System.Net.Http.Json;
+@inject HttpClient Http;
+@inject AddDocument AddDocumentService;
+@inject NavigationManager NavigationManager
+
+<PageTitle>Add</PageTitle>
+
+<h1>Type to add file(s)</h1>
+<br />
+
+<textarea id="nameInput" @bind="nameInput" name="nameInput" rows="1" cols="5" placeholder="Enter desired file name..." class="form-control"></textarea><br/>
+<textarea id="paragraphInput" @bind="paragraphInput" name="paragraphInput" rows="6" cols="60" placeholder="Start typing here..." class="form-control"></textarea><br/>
+
+<button class="btn btn-success btn-lg rounded w-100 " @onclick="AddNewDocument">Add to file list</button>
+
+
+@code{
+
+    // Initalizes both user input fields as empty strings
+    private string nameInput = string.Empty;
+    private string paragraphInput = string.Empty;
+
+    // Private function that uses Nav Manager to 'reload' the page
+    private void RefreshPage()
+    {
+        NavigationManager.NavigateTo("/Add", forceLoad: true);
+    }
+
+    // The new document method that pushes the user's inputs into the new doc's class 
+    private async Task AddNewDocument()
+    {
+        var newDoc = new Document
+        {
+            Name = nameInput,
+            Content = paragraphInput
+        };
+        
+        // Stores the POST request in a response variable and if it succeeds it calls the refresh method. If it fails the error is written to the console. 
+        try
+        {
+            var response = await Http.PostAsJsonAsync("/api/documents", newDoc);
+            
+            if(response.IsSuccessStatusCode)
+            {
+                RefreshPage();
+                nameInput = string.Empty;
+                paragraphInput = string.Empty; 
+                Console.WriteLine("File uploaded!");
+            }
+            else 
+            {
+                Console.WriteLine("Failed to upload file.");
+            }
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error adding document: " + ex.Message);
+            return;
+        }
+
+    }
+}

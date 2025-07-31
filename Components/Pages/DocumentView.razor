@@ -1,0 +1,45 @@
+@page "/documents/view/{Id:int}"
+@attribute [StreamRendering]
+@using TheFiler.BlazorApp1.Data;
+@using TheFiler.BlazorApp1.Services;
+@using System.IO;
+@inject ViewFile ViewFileService
+
+
+@if (document == null)
+{
+    <p><em>Error: Document content could not be loaded.</em></p>
+}
+else
+{
+    <div class="card p-2 mb-3 card border-dark">
+        <h4>Viewing: @document.Name</h4>
+    </div>
+
+    <div class="card p-4 mb-2 card border-dark">
+        <pre>@document.Content</pre>>
+    </div><br/>
+
+    <div>
+        <a href="/List" class="btn btn-primary btn-lg rounded w-100 shadow">Go Back</a>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Document? document;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            document = await ViewFileService.GetDocumentContentAsync(Id);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error fetching document: " + ex.Message);
+        }
+    }
+}
