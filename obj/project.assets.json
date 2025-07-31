@@ -8,19 +8,19 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Kidsq\\.nuget\\packages\\": {}
+    "/Users/henryf/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kidsq\\Projects\\TheFiler\\BlazorApp1\\BlazorApp1.csproj",
+      "projectUniqueName": "/Users/henryf/Projects/The-Filer-Repo/BlazorApp1.csproj",
       "projectName": "BlazorApp1",
-      "projectPath": "C:\\Users\\Kidsq\\Projects\\TheFiler\\BlazorApp1\\BlazorApp1.csproj",
-      "packagesPath": "C:\\Users\\Kidsq\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kidsq\\Projects\\TheFiler\\BlazorApp1\\obj\\",
+      "projectPath": "/Users/henryf/Projects/The-Filer-Repo/BlazorApp1.csproj",
+      "packagesPath": "/Users/henryf/.nuget/packages/",
+      "outputPath": "/Users/henryf/Projects/The-Filer-Repo/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Kidsq\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/henryf/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -68,7 +68,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
