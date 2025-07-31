@@ -25,10 +25,6 @@ C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\obj\Debug\net9.0\scopedcss\Component
 C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\obj\Debug\net9.0\scopedcss\bundle\BlazorApp1.styles.css
 C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\obj\Debug\net9.0\scopedcss\projectbundle\BlazorApp1.bundle.scp.css
 C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\obj\Debug\net9.0\compressed\psnyflj9j1-1fy2s5csvw.gz
-C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\obj\Debug\net9.0\compressed\4x0ay0imxt-jagn85g86v.gz
-C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\obj\Debug\net9.0\compressed\6ock9t9r9p-1dgqdxr048.gz
-C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\obj\Debug\net9.0\compressed\h1qvkvg9u9-0h5d2aei4q.gz
-C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\obj\Debug\net9.0\compressed\3bk27vtzc6-rtwvxqj215.gz
 C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\obj\Debug\net9.0\compressed\xscm68l0ox-bqjiyaj88i.gz
 C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\obj\Debug\net9.0\compressed\a413awwuph-c2jlpeoesf.gz
 C:\Users\Kidsq\Projects\TheFiler\BlazorApp1\obj\Debug\net9.0\compressed\hbq4d3qinw-erw9l3u2r3.gz
